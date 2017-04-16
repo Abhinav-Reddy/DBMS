@@ -39,16 +39,17 @@ public class SignUpOperator extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Pattern pattern = Pattern.compile("^.+@.+\\..+$");
-		Matcher matcher = pattern.matcher("");
-		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String carrrierID = request.getParameter("carrierID");
+		String carrrierID = request.getParameter("carrierID").split(" - ")[0];
+		Pattern pattern = Pattern.compile("^.+@.+\\..+$");
+		Matcher matcher = pattern.matcher(email);
+		PrintWriter out = response.getWriter();
+		
 		
 		
 		if (matcher.matches() == false){
-			out.println("Invalid Email address. Please enter a valid Email ID");
+			out.println("Invalid Email address. Please enter a valid Email ID "+email);
 		}
 		else{
 			//step1 load the driver class  
@@ -63,16 +64,21 @@ public class SignUpOperator extends HttpServlet {
 				    
 				//step3 create the statement object  
 				Statement stmt=con.createStatement();  
-				  
+				
+				System.out.println("select * from carrieroperator"
+						+ " where carriercode like '"+ carrrierID + "' or email like '"+email+"'");
 				//step4 execute query  
 				ResultSet rs=stmt.executeQuery("select * from carrieroperator"
-							+ " where carrierID like "+ carrrierID + " or email like "+email);
-				if (rs.getFetchSize() > 0){
+						+ " where carriercode like '"+ carrrierID + "' or email like '"+email+"'");
+				if (rs.next()){
 					out.println("Operator/Email is already registered for this carrier");
+					System.out.println("Operator/Email is already registered for this carrier "+rs.getFetchSize());
 				}
 				else{
-					stmt.executeQuery("insert into carrieroperator values (" + email + " " + password + " " + carrrierID);
+					System.out.println("insert into carrieroperator values ('" + email + "', '" + password + "', '" + carrrierID+"')");
+					stmt.executeQuery("insert into carrieroperator values ('" + email + "', '" + password + "', '" + carrrierID+"')");
 					out.println("Carrier operator registered successfully");
+					System.out.println("Carrier operator registered successfully");
 				}
 				  
 				con.close();

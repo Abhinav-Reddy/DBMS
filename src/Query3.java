@@ -40,8 +40,8 @@ public class Query3 extends HttpServlet {
 				
 		String start, end;
 		
-		start = request.getParameter("startDate");
-		end = request.getParameter("endDate");
+		//start = request.getParameter("startDate");
+		//end = request.getParameter("endDate");
 		
 		try{
 			//step1 load the driver class  
@@ -55,11 +55,12 @@ public class Query3 extends HttpServlet {
 			Statement stmt=con.createStatement();  
 			  
 			//step4 execute query
-			String query = "select * from carrier";
+			String query = "select * from airport";
 			ResultSet rs=stmt.executeQuery(query);  
 			while(rs.next()){
 			//System.out.println(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+"\n");
-				out.println("\""+rs.getString(1)+"\" : { \" n \" : \""+rs.getString(2)+" \" },");
+				out.println("<option value = \""+rs.getString(1)+" - "+rs.getString(2)+"\">");
+				System.out.println("<option value = \""+rs.getString(1)+" - "+rs.getString(2)+"\">");
 				out.println("<br>");
 			}
 			

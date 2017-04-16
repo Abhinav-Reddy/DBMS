@@ -62,11 +62,13 @@ public class UpdateFlightCost extends HttpServlet {
 				out.println("Unauthorised Access");
 			}
 			else{
-				stmt.executeQuery("update scheduledflights "
-				+ "set cost = " + request.getParameter("Cost") + " where "
-				+ "FlightDate = to_date('"+ request.getParameter("FlightDate") +"', 'yyyy-mm-dd')" + " "
-				+ "OperatedBy like " + carrierID + " "
-				+ "FlightNumber like " + request.getParameter("FlightNumber") );
+				String query = "update scheduledflights "
+						+ "set cost = " + request.getParameter("Cost") + " where "
+						+ "FlightDate = to_date('"+ request.getParameter("FlightDate") +"', 'yyyy-mm-dd')" + " "
+						+ "OperatedBy like '" + carrierID + "' "
+						+ "FlightNumber like '" + request.getParameter("FlightNumber") + "'";
+				System.out.println(query);
+				stmt.executeQuery(query);
 				out.println("Flight cost updated successfully");
 			}
 			con.close();

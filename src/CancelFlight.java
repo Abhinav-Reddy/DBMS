@@ -62,10 +62,12 @@ public class CancelFlight extends HttpServlet {
 				out.println("Unauthorised Access");
 			}
 			else{
-				stmt.executeQuery("delete from scheduledflights where"
-				+ "FlightDate = to_date('"+ request.getParameter("FlightDate") +"', 'yyyy-mm-dd')" + " "
-				+ "OperatedBy like " + carrierID + " "
-				+ "FlightNumber like " + request.getParameter("FlightNumber") );
+				String query = "delete from scheduledflights where"
+						+ "FlightDate = to_date('"+ request.getParameter("FlightDate") +"', 'yyyy-mm-dd')" + " "
+						+ "OperatedBy like '" + carrierID + "' "
+						+ "FlightNumber like '" + request.getParameter("FlightNumber") + "'";
+				System.out.println(query);
+				stmt.executeQuery(query);
 				out.println("Flight cancelled successfully");
 			}
 			con.close();

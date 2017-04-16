@@ -37,7 +37,8 @@ public class OperatorLogin extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-			
+		
+		System.out.println(email + " " + password);
 		//step1 load the driver class  
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -52,10 +53,11 @@ public class OperatorLogin extends HttpServlet {
 			Statement stmt=con.createStatement();  
 			  
 			//step4 execute query  
-			ResultSet rs=stmt.executeQuery("select * from carrieroperator where email like "+ email + " and password like " + password);
-			if (rs.getFetchSize() > 0){
+			ResultSet rs=stmt.executeQuery("select * from carrieroperator where email like '"+ email + "' and password like '" + password +"'");
+			if (rs.next()){
 				Cookie cookie = new Cookie("LoginDetails", rs.getString(3));
 				response.addCookie(cookie);
+				out.println("Logged In succeffully");
 			}
 			else{
 				out.println("Invalid email ID and password");

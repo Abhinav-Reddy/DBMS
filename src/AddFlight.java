@@ -65,13 +65,14 @@ public class AddFlight extends HttpServlet {
 			else{
 				String[] origin = request.getParameter("Source").split("-");
 				String[] dest = request.getParameter("Destination").split("-");
-				stmt.executeQuery("insert into scheduledflights values ("
-				+ "to_date('"+ request.getParameter("FlightDate") +"', 'yyyy-mm-dd')" + " "
-				+ carrierID + " " + request.getParameter("FlightNumber")+ " "
-				+ origin + " " + dest
-				+ request.getParameter("StartTime") + " " + request.getParameter("EndTime")
-				+ request.getParameter("Distance") + " " + request.getParameter("Cost") + ")"
-				);
+				String query = "insert into scheduledflights values ("
+				+ "to_date('"+ request.getParameter("FlightDate") +"', 'yyyy-mm-dd')" + ", '"
+				+ carrierID + "', '" + request.getParameter("FlightNumber")+ "', '"
+				+ origin + "', '" + dest + "', '"
+				+ request.getParameter("StartTime") + "', '" + request.getParameter("EndTime") + "', '"
+				+ request.getParameter("Distance") + "', " + request.getParameter("Cost") + ")";
+				System.out.println(query);
+				stmt.executeQuery(query);
 				out.println("Flight added successfully");
 			}
 			con.close();

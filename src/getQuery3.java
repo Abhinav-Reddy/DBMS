@@ -52,9 +52,15 @@ public class getQuery3 extends HttpServlet {
 			Statement stmt=con.createStatement();  
 			  
 			//step4 execute query
-			String query = "select FlightDate, OperatedBy, OriginID, DestinationID"
-					 + "	from ScheduledFlights"
-					 + "	where FlightDate  <= to_date('"+ start+"', 'yyyy-mm-dd') and FlightDate  >= to_date('"+ end +"', 'yyyy-mm-dd')";
+			String query = "Select * from"
+			+ "(Select CarrierName, UniqueCarrierCode, avg(LateAircraftDelay+CarrierDelay) as TotalDelay"
+			+ " from PASTFLIGHTSCHEDULE p, CARRIER c "
+			+ " Where p.OperatedBy = c. UniquecarrierCode and "
+			+ " FlightDate  <= to_date('"+ start+"', 'yyyy-mm-dd') and FlightDate  >= to_date('"+ end +"', 'yyyy-mm-dd') "
+			+ "Group by UniqueCarrierCode, CarrierName "
+			+ "Order by TotalDelay desc) "
+			+ "Where rownum < 10+1";
+			
 			System.out.println(query);
 			ResultSet rs=stmt.executeQuery(query);  
 			while(rs.next())  {
@@ -63,7 +69,26 @@ public class getQuery3 extends HttpServlet {
 			out.println("<br>");
 			}
 			
+			String queryTwo = "Select * from"
+			+ "(Select CarrierName, UniqueCarrierCode, avg(LateAircraftDelay+CarrierDelay) as TotalDelay"
+			+ " from PASTFLIGHTSCHEDULE p, CARRIER c "
+			+ " Where p.OperatedBy = c. UniquecarrierCode and "
+			+ " FlightDate  <= to_date('"+ start+"', 'yyyy-mm-dd') and FlightDate  >= to_date('"+ end +"', 'yyyy-mm-dd') "
+			+ "Group by UniqueCarrierCode, CarrierName "
+			+ "Order by TotalDelay asc) "
+			+ "Where rownum < 10+1";
+					
+			System.out.println(queryTwo);
+			ResultSet rsTwo=stmt.executeQuery(queryTwo);  
+			while(rsTwo.next())  {
+			//System.out.println(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+"\n");
+			out.println(rsTwo.getString(2)+" "+rsTwo.getString(3)+" "+rsTwo.getString(4)+"\n");
+			out.println("<br>");
+			}
+			
 			System.out.println("Done");
+			
+			
 			//step5 close the connection object  
 			con.close();  
 			  

@@ -32,6 +32,8 @@ public class Add extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String str = request.getParameter("test");
+		System.out.println(str);
 		// TODO Auto-generated method stub
 		/*
 		try{  

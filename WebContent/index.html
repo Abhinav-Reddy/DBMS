@@ -11,7 +11,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<title>Vacation Travel</title>
+<title>DBMS Project Team4</title>
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,69 +21,75 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<style>body{
+    background:url('images/1');
+    padding:50px;
+}
+</style>
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+                     <div class="container-fluid">
+    
+                          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      							<ul class="nav navbar-nav navbar-right">
+      							      <li >
+                                      <a href="login.html"  ><b>Login</b> </a>
+									  </li>
+									  <li >
+                                      <a href="signup.html"  ><b>SignUp</b> </a>
+									  </li>
+      							</ul>
+    					 </div>
+  					</div>
+		</nav>
+<header>
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+ 
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="http://1.bp.blogspot.com/-rMzXq0JJ3nA/T6Dp1NaCSyI/AAAAAAAABug/IL9eA05J4Jk/s1600/767+Maui---446.jpg"  >
+      <div class="carousel-caption">
+      	<h3>Flight Recommendation System</h3>
+      </div>
+    </div>
+    <div class="item">
+      <img src="http://utility-aircraft.com/wp-content/uploads/2015/09/lm6-1080x410.jpg">
+      <div class="carousel-caption" height="1200" width="315">
+      	<h3>Flight Recommendation System</h3>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/EC-LFG_Dash_8Q-315_Air_Nost-IB_Reg_PMI_19MAY10_%286822966053%29.jpg/1280px-EC-LFG_Dash_8Q-315_Air_Nost-IB_Reg_PMI_19MAY10_%286822966053%29.jpg"  width="1200" height="315">
+      <div class="carousel-caption">
+      	<h3>Flight Recommendation System</h3>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div> <!-- Carousel -->
+</header>		
 <div class="page text-center">
-  <header class="page-header slider-menu-position">
-    <div class="rd-navbar-wrap">
-      
-        <div class="rd-navbar-inner">
-          <div class="rd-navbar-panel">
-            <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
-            
-            
-             </div>
-          <div class="rd-navbar-nav-wrap">
-            <ul class="rd-navbar-nav">
-              
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <div data-height="" data-min-height="400px" data-simulate-touch="false" data-slide-effect="fade" class="swiper-container swiper-slider">
-      <div class="swiper-wrapper">
-        <div data-slide-bg="images/background-01-1920x900.jpg" class="swiper-slide"></div>
-        <div data-slide-bg="images/background-02-1920x900.jpg" class="swiper-slide"></div>
-        <div data-slide-bg="images/background-03-1920x900.jpg" class="swiper-slide"></div>
-      </div>
-      <div class="swiper-caption-absolute">
-        <div class="shell">
-          <div class="range range-xs-center">
-            <div class="cell-lg-10">
-              <div>
-                <h1 class="text-white">Flight Recommendation System</h1>
-              </div>
-              <div class="offset-top-8">
-                <p class="h6 text-white">This is our UI</p>
-              </div>
-              <div class="offset-top-30 offset-md-top-60 inset-left-20 inset-right-20 inset-sm-left-0 inset-sm-right-0">
-                <form class="rd-mailform form-inline-search">
-                  <div class="form-group form-group-xs form-inline-item">
-                    <label for="index-destination" class="form-label">Source</label>
-                    <input id="index-destination" type="text" name="destination" class="form-control">
-                  </div>
-                  <div class="form-group form-group-xs form-inline-item form-inline-item-xs">
-                    <label for="index-arrival" class="form-label">Destination</label>
-                    <input id="index-arrival" type="text" name="destination" class="form-control">
-                  </div>
-                  
-                  <div class="form-group form-group-xs form-inline-item">
-                    <label for="index-budget" class="form-label">Date</label>
-                    <input id="index-budget" type="text" name="budget" class="form-control">
-                  </div>
-                  <div class="form-inline-item offset-top-15 offset-sm-top-0">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"><span class="icon icon-xxs icon-circle icon-filled-white mdi mdi-chevron-left text-gray"></span></div>
-      <div class="swiper-button-next"><span class="icon icon-xxs icon-circle icon-filled-white mdi mdi-chevron-right text-gray"></span></div>
-    </div>
-  </header>
+<style >
+body{
+    background:url('images/1');
+    padding:50px;
+}
+	
+</style>
+  
   <main class="page-content">
     <section class="section-80 section-md-top-70 bg-wild-wand">
       <div class="shell">
@@ -322,6 +328,8 @@
 </div>
 <script src="js/core.min.js"></script> 
 <script src="js/script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 
 <!-- Mirrored from themepro.top/travel_tour2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 29 Mar 2017 00:32:02 GMT -->

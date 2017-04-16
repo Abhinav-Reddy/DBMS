@@ -56,8 +56,8 @@ public class getQuery5 extends HttpServlet {
 							"(Select DEPARTEDATAIRPORTID, ARRIVEDATAIRPORTID , avg(nvl(NASdelay,0))as AverageDelay "
 							+ "from PASTFLIGHTSCHEDULE p "
 							+ "Where "
-							+ "FlightDate >= to_date('"+ request.getParameter("r-form-1-StartDate") +"', 'yyyy-mm-dd')" + " and "
-							+ "FlightDate <= to_date('"+ request.getParameter("r-form-1-EndDate") +"', 'yyyy-mm-dd')" + " "
+							+ "FlightDate >= to_date('"+ start +"', 'yyyy-mm-dd')" + " and "
+							+ "FlightDate <= to_date('"+ end +"', 'yyyy-mm-dd')" + " "
 							//+ "FlightDate >= '01-01-17' and FlightDate <= '31-01-17' "
 							+ "group by DEPARTEDATAIRPORTID, ARRIVEDATAIRPORTID "
 							+ "Order by AverageDelay desc) "
@@ -67,6 +67,24 @@ public class getQuery5 extends HttpServlet {
 			while(rs.next()){
 			//System.out.println(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+"\n");
 				out.println("\""+rs.getString(1)+"\" : { \" n \" : \""+rs.getString(2)+" \" },");
+				out.println("<br>");
+			}
+			
+			String queryTwo = "Select * from " +
+					"(Select DEPARTEDATAIRPORTID, ARRIVEDATAIRPORTID , avg(nvl(NASdelay,0))as AverageDelay "
+					+ "from PASTFLIGHTSCHEDULE p "
+					+ "Where "
+					+ "FlightDate >= to_date('"+ start +"', 'yyyy-mm-dd')" + " and "
+					+ "FlightDate <= to_date('"+ end +"', 'yyyy-mm-dd')" + " "
+					//+ "FlightDate >= '01-01-17' and FlightDate <= '31-01-17' "
+					+ "group by DEPARTEDATAIRPORTID, ARRIVEDATAIRPORTID "
+					+ "Order by AverageDelay asc) "
+					+ "Where rownum < 10+1 ";
+			System.out.println(queryTwo);
+			ResultSet rsTwo=stmt.executeQuery(queryTwo);  
+			while(rsTwo.next()){
+			//System.out.println(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+"\n");
+				out.println("\""+rsTwo.getString(1)+"\" : { \" n \" : \""+rsTwo.getString(2)+" \" },");
 				out.println("<br>");
 			}
 			

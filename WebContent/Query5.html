@@ -4,6 +4,13 @@
     
 <!-- Mirrored from azmind.com/demo/regy-register-landing-page/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Apr 2017 18:02:33 GMT -->
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +44,18 @@
     <body>
 		
 		<!-- Top menu -->
-		
+		<nav class="navbar navbar-default navbar-inverse" role="navigation">
+                     <div class="container-fluid">
+    
+                          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-right">
+                                      <li class="dropdown">
+                                      <a href="index.html"  ><b>Home</b> <span class="caret"></span></a>
+                                      </li>
+                                </ul>
+                         </div>
+                    </div>
+        </nav>
 				
         <!-- Top content -->
         <div class="top-content">
@@ -46,11 +64,6 @@
 				<div class="row">
 					<div class="col-sm-8 col-sm-offset-2 text">
 						<h1 class="wow fadeInLeftBig">Top 10 routes with highest national aviation system(NAS) delay for the queried time interval.</h1>
-						<div class="description wow fadeInLeftBig">
-							<p>
-								We have been working very hard to create the new version of our app. It comes with a lot of new features. Check it out now!
-							</p>
-						</div>
 					</div>
 				</div>
 
@@ -70,11 +83,11 @@
 								
 								<div class="form-group">
 									<label class="sr-only" for="r-form-1-StartDate">StartDate</label>
-									<input type="date" name="r-form-1-StartDate" placeholder="StartDate" class="r-form-1-StartDate form-control" id="r-form-1-StartDate">
+									<input type="date" name="startDate" placeholder="StartDate" class="r-form-1-StartDate form-control" id="r-form-1-StartDate">
 								</div>
 								<div class="form-group">
 									<label class="sr-only" for="r-form-1-EndDate">EndDate</label>
-									<input type="date" name="r-form-1-EndDate" placeholder="EndDate" class="r-form-1-EndDate form-control" id="r-form-1-EndDate">
+									<input type="date" name="endDate" placeholder="EndDate" class="r-form-1-EndDate form-control" id="r-form-1-EndDate">
 								</div>
 								
 								<button type="submit" class="btn">Find Routes with highest NAS Delay!</button>
