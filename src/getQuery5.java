@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/getQuery5")
 public class getQuery5 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,23 +34,23 @@ public class getQuery5 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		
+
 		String start, end;
-		
+
 		start = request.getParameter("startDate");
 		end = request.getParameter("endDate");
-		
+
 		try{
-			//step1 load the driver class  
-			Class.forName("oracle.jdbc.driver.OracleDriver");  
-			  
-			//step2 create  the connection object  
-			Connection con=DriverManager.getConnection(  
-					"jdbc:oracle:thin:@oracle.cise.ufl.edu:1521:orcl","thota", "jayakrishna");  
-			  
-			//step3 create the statement object  
-			Statement stmt=con.createStatement();  
-			  
+			//step1 load the driver class
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			//step2 create  the connection object
+			Connection con=DriverManager.getConnection(
+					"jdbc:oracle:thin:@oracle.cise.ufl.edu:1521:orcl","thota", "jayakrishna");
+
+			//step3 create the statement object
+			Statement stmt=con.createStatement();
+
 			//step4 execute query
 			String query = "Select * from " +
 							"(Select DEPARTEDATAIRPORTID, ARRIVEDATAIRPORTID , avg(nvl(NASdelay,0))as AverageDelay "
@@ -63,13 +63,10 @@ public class getQuery5 extends HttpServlet {
 							+ "Order by AverageDelay desc) "
 							+ "Where rownum < 10+1 ";
 			System.out.println(query);
-			ResultSet rs=stmt.executeQuery(query);  
-			while(rs.next()){
-			//System.out.println(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+"\n");
-				out.println("\""+rs.getString(1)+"\" : { \" n \" : \""+rs.getString(2)+" \" },");
-				out.println("<br>");
-			}
-			
+
+			ResultSet rs=stmt.executeQuery(query);
+
+
 			String queryTwo = "Select * from " +
 					"(Select DEPARTEDATAIRPORTID, ARRIVEDATAIRPORTID , avg(nvl(NASdelay,0))as AverageDelay "
 					+ "from PASTFLIGHTSCHEDULE p "
@@ -81,17 +78,13 @@ public class getQuery5 extends HttpServlet {
 					+ "Order by AverageDelay asc) "
 					+ "Where rownum < 10+1 ";
 			System.out.println(queryTwo);
-			ResultSet rsTwo=stmt.executeQuery(queryTwo);  
-			while(rsTwo.next()){
-			//System.out.println(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+"\n");
-				out.println("\""+rsTwo.getString(1)+"\" : { \" n \" : \""+rsTwo.getString(2)+" \" },");
-				out.println("<br>");
-			}
-			
+			ResultSet rsTwo=stmt.executeQuery(queryTwo);
+
+			out.println(getOutput(rs, rsTwo));
 			System.out.println("Done");
-			//step5 close the connection object  
-			con.close();  
-			  
+			//step5 close the connection object
+			con.close();
+
 			}catch(Exception e){ System.out.println(e);}
 
 	}
