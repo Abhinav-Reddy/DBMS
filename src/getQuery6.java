@@ -15,6 +15,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.io.*;
+
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+
 /**
  * Servlet implementation class Query6Result
  */
@@ -30,7 +39,7 @@ public class getQuery6 extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    String getOutput(ResultSet rs, String airport, String startDate, String endDate) throws SQLException{
+    String getOutput(ResultSet rs, String airport, String startDate, String endDate) throws SQLException, IOException{
 
     	String startHtml = "<!DOCTYPE html ><html lang=\"en\"><head>	<meta charset=\"utf-8\">	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">	<meta name=\"author\" content=\"Magdalena Myka\">	<title>Flight Search</title>	<!-- Latest compiled and minified CSS -->	<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css\">	<!-- Optional theme -->	<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css\">	<link rel=\"stylesheet\" href=\"http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css\">	<style>	body {	background:url('http://www.beautiful-views.net/views/clouds-plane-sky-flight.jpg') no-repeat 0px 0px;	background-size: cover;	font-family: 'Open Sans', sans-serif;	background-attachment: fixed;    background-position: center;}</style></head><body>	<div class=\"container\">		<div class=\"row\">			<div class=\"col-md-3\">				<!-- Refine price -->			</div>			<!-- Search results -->			<div class=\"col-sm-12 col-md-9\">				<!-- First row with header and dates -->				<div class=\"row\" id=\"results-header\">					<div class=\"col-md-6\">"
     			+ "	</div>	</div>	<!-- All results (these are sample static data)-->				<div class=\"row\">					<div class=\"col-md-8\" id=\"results\">";
@@ -68,6 +77,26 @@ public class getQuery6 extends HttpServlet {
 
 
 		}
+/*
+    	DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
+        line_chart_dataset.addValue( 15 , "schools" , "1970" );
+        line_chart_dataset.addValue( 30 , "schools" , "1980" );
+        line_chart_dataset.addValue( 60 , "schools" , "1990" );
+        line_chart_dataset.addValue( 120 , "schools" , "2000" );
+        line_chart_dataset.addValue( 240 , "schools" , "2010" );
+        line_chart_dataset.addValue( 300 , "schools" , "2014" );
+
+        JFreeChart lineChartObject = ChartFactory.createLineChart(
+           "Schools Vs Years","Year",
+           "Schools Count",
+           line_chart_dataset,PlotOrientation.VERTICAL,
+           true,true,false);
+
+        int width = 640;
+        int height = 480;
+        File lineChart = new File( "LineChart.jpeg" );
+        ChartUtilities.saveChartAsJPEG(lineChart ,lineChartObject, width ,height);
+*/
     	return startHtml+res+endHtml;
     }
 

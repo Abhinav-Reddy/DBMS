@@ -18,7 +18,7 @@ import java.sql.*;
 @WebServlet("/Add")
 public class Add extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+
 	int i=0;
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,35 +33,39 @@ public class Add extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String str = request.getParameter("test");
+		PrintWriter out = response.getWriter();
 		System.out.println(str);
 		// TODO Auto-generated method stub
-		/*
-		try{  
-			//step1 load the driver class  
-			Class.forName("oracle.jdbc.driver.OracleDriver");  
-			  
-			//step2 create  the connection object  
-			Connection con=DriverManager.getConnection(  
-					"jdbc:oracle:thin:@oracle.cise.ufl.edu:1521:orcl","thota", "jayakrishna");  
-			  
-			//step3 create the statement object  
-			Statement stmt=con.createStatement();  
-			  
-			//step4 execute query  
-			ResultSet rs=stmt.executeQuery("select * from emp");  
-			while(rs.next())  
-			System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-			  
-			//step5 close the connection object  
-			con.close();  
-			  
+
+		try{
+			//step1 load the driver class
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			//step2 create  the connection object
+			Connection con=DriverManager.getConnection(
+					"jdbc:oracle:thin:@oracle.cise.ufl.edu:1521:orcl","thota", "jayakrishna");
+
+			//step3 create the statement object
+			Statement stmt=con.createStatement();
+
+			//step4 execute query
+			String query = "select * from airport";
+			ResultSet rs=stmt.executeQuery(query);
+			while(rs.next()){
+			//System.out.println(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+"\n");
+				out.println("<option value = \""+rs.getString(1)+" - "+rs.getString(2)+"\">");
+				System.out.println("<option value = \""+rs.getString(1)+" - "+rs.getString(2)+"\">");
+
+			}
+
+			System.out.println("Done");
+			//step5 close the connection object
+			con.close();
+
 			}catch(Exception e){ System.out.println(e);}
-		*/
-		
-		PrintWriter out = response.getWriter();
-		out.println(i);
+
 		i++;
-		
+
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
